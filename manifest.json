@@ -1,0 +1,26 @@
+{
+  "name": "Latency of Browser",
+  "version": "0.1",
+  "manifest_version": 2,
+  "permissions":["*://*/*", "tabs", "storage", "webNavigation"],
+
+  "description": "ブラウザのレイテンシを表示する",
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "content_scripts":[
+    {
+        "matches": ["<all_urls>"],
+        "js":["script.js"]
+    }
+],
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "Show latency",
+    "default_popup": "popup.html"
+  }
+}

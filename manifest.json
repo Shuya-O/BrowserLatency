@@ -2,7 +2,8 @@
   "name": "Latency of Browser",
   "version": "0.1",
   "manifest_version": 2,
-  "permissions":["*://*/*", "tabs", "storage", "webNavigation"],
+
+  "permissions":["*://*/*", "tabs", "storage"],
 
   "description": "ブラウザのレイテンシを表示する",
 

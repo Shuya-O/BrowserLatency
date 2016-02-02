@@ -14,9 +14,10 @@ var domCompleteTime = pt.domComplete - pt.domLoading; // DOM構築完了まで�
 
 // window.onload だと動かない
 if (window.addEventListener) window.addEventListener('load',function() {
+
   /* 動いてくれない visualizationAPI描画を始める
   google.load("visualization", "1", {packages:["corechart"]});
-  var draw = google.setOnLoadCallback(function(){
+      google.setOnLoadCallback(function(){
       var data = new google.visualization.DataTable();
       data.addColumn("string", "type");
       data.addColumn("number", "time");
@@ -35,10 +36,20 @@ if (window.addEventListener) window.addEventListener('load',function() {
         title: "Navigation Timing Result"
       });
    })
-  draw();
-  */
+   */
   sendmessage(latency);
+  write();
 }, false);
+
+function write () {
+  var text = "DNS："+dnsTime+"ミリ秒<br>";
+  text += "TCP："+tcpTime+"ミリ秒<br>";
+  text += "Request："+requestTime+"ミリ秒<br>";
+  text += "Response："+responseTime+"ミリ秒<br>";
+  text += "DOM Interactive："+domInteractiveTime+"ミリ秒<br>";
+  text += "DOM Complete："+domCompleteTime+"ミリ秒<br>";
+  document.getElementById("result").innerHTML = text;
+}
 
 //値をbackgroundの送信
 function sendmessage (latency) {
@@ -49,39 +60,6 @@ function sendmessage (latency) {
       }
   );
 }
-
-//図形
-var size = {
- width: 150,
- height:150
-};
-
-// 円グラフの表示データ
-var data = [
- 60,
- 30,
- 10
-];
-data.push(2);
-
-// d3用の変数
-var svg   = d3.select("#chart"),
-   pie   = d3.layout.pie().value(function(d){ return d; }),
-   arc   = d3.svg.arc().innerRadius(0).outerRadius(size.width / 2);
-
-// グループの作成
-var g = svg.selectAll(".arc")
- .data(pie(data))
- .enter()
- .append("g")
-   .attr("transform", "translate(" + (size.width / 2) + "," + (size.height / 2) + ")")
-   .attr("class", "arc");
-
-// 円弧の作成
-g.append("path")
- .attr("d", arc)
- .attr("stroke", "white");
-
 
 /* for debug　インラインではイベントが動かん
 function unko() {

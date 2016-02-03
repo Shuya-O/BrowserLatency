@@ -1,4 +1,11 @@
+// backgroundからデータの取得
 var latency = chrome.extension.getBackgroundPage().latency;
+var dnsTime = chrome.extension.getBackgroundPage().dnsTime;
+var tcpTime = chrome.extension.getBackgroundPage().tcpTime;
+var requestTime = chrome.extension.getBackgroundPage().requestTime;
+var responseTime = chrome.extension.getBackgroundPage().responseTime;
+var domInteractiveTime = chrome.extension.getBackgroundPage().domInteractiveTime;
+//var domCompleteTime = chrome.extension.getBackgroundPage().domCompleteTime;
 
 // ベタ文で描画
 var result = document.getElementById("push");
@@ -6,13 +13,14 @@ result.addEventListener("click", write, false);
 
 function write () {
   console.log(latency);
-  /*"DNS："+dnsTime+"ミリ秒<br>";
+  console.log(dnsTime);
+  var text = "DNS："+dnsTime+"ミリ秒<br>";
   text += "TCP："+tcpTime+"ミリ秒<br>";
   text += "Request："+requestTime+"ミリ秒<br>";
   text += "Response："+responseTime+"ミリ秒<br>";
   text += "DOM Interactive："+domInteractiveTime+"ミリ秒<br>";
-  text += "DOM Complete："+domCompleteTime+"ミリ秒<br>";
-  */
+  //text += "DOM Complete："+domCompleteTime+"ミリ秒<br>";
+
   document.getElementById("result").innerHTML = text;
 }
 

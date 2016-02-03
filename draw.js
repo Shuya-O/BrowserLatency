@@ -1,9 +1,11 @@
+var latency = chrome.extension.getBackgroundPage().latency;
+
 // ベタ文で描画
 var result = document.getElementById("push");
 result.addEventListener("click", write, false);
+
 function write () {
-  console.log("クリッックされた");
-  var text = "テスト"
+  console.log(latency);
   /*"DNS："+dnsTime+"ミリ秒<br>";
   text += "TCP："+tcpTime+"ミリ秒<br>";
   text += "Request："+requestTime+"ミリ秒<br>";
@@ -13,6 +15,7 @@ function write () {
   */
   document.getElementById("result").innerHTML = text;
 }
+
 
   /* 動いてくれない visualizationAPI描画を始める
   google.load("visualization", "1", {packages:["corechart"]});

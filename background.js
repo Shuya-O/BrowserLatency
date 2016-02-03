@@ -8,13 +8,13 @@ chrome.extension.onMessage.addListener(
       console.log(request.dnsTime);
       sendResponse({message: "kanryou"});
       //格納しなおし
-      var latency = request.latency
-      var dnsTime = request.dnsTime
-      var tcpTime = request.tcpTime
-      var requestTime = request.requestTime
-      var responseTime = request.responseTime
-      var domInteractiveTime = request.domInteractiveTime
-      var domCompleteTime = request.domCompleteTime
+      latency = request.latency
+      dnsTime = request.dnsTime
+      tcpTime = request.tcpTime
+      requestTime = request.requestTime
+      responseTime = request.responseTime
+      domInteractiveTime = request.domInteractiveTime
+      domCompleteTime = request.domCompleteTime
       console.log(latency + "成功");
     }
   );

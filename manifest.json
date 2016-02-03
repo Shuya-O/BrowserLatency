@@ -2,7 +2,7 @@
   "name": "Latency of Browser",
   "version": "0.1",
   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' https://www.google.com/jsapi https://www.google.com/uds/?file=visualization&v=1&packages=corechart ; object-src 'self'",  
+  "content_security_policy": "script-src 'self' https://www.google.com/jsapi https://www.google.com/uds/?file=visualization&v=1&packages=corechart ; object-src 'self'",
 
   "permissions":["http://*/*", "tabs", "storage","webNavigation"],
 

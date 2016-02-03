@@ -24,10 +24,12 @@ function write () {
   document.getElementById("result").innerHTML = text;
 }
 
+//動いてくれない visualizationAPI描画を始める
+var graph = document.getElementById("push2");
+google.load("visualization", "1", {packages:["corechart"]});
 
-  /* 動いてくれない visualizationAPI描画を始める
-  google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(function(){
+graph.addEventListener("click",
+  google.setOnLoadCallback(function(){
       var data = new google.visualization.DataTable();
       data.addColumn("string", "type");
       data.addColumn("number", "time");
@@ -36,14 +38,12 @@ function write () {
         [ "TCP", tcpTime],
         [ "Request", requestTime],
         [ "Response", responseTime],
-        [ "DOM Interactive", domInteractiveTime],
-        [ "DOM Complete", domCompleteTime]
+        [ "DOM Interactive", domInteractiveTime]
       ]);
       var chart = new google.visualization.PieChart(document.getElementById("graph"));
       chart.draw(data, {
-        width: 250,
-        height: 150,
+        width: 500,
+        height: 300,
         title: "Navigation Timing Result"
       });
-   })
-   */
+   }), false)

@@ -14,7 +14,7 @@ chrome.extension.onMessage.addListener(
       requestTime = request.requestTime,
       responseTime = request.responseTime,
       domInteractiveTime = request.domInteractiveTime,
-      domCompleteTime = request.domCompleteTime,
+      //domCompleteTime = request.domCompleteTime,
 
       console.log(latency + "成功");
     }

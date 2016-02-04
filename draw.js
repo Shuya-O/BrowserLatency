@@ -6,6 +6,8 @@ var requestTime = chrome.extension.getBackgroundPage().requestTime;
 var responseTime = chrome.extension.getBackgroundPage().responseTime;
 var domInteractiveTime = chrome.extension.getBackgroundPage().domInteractiveTime;
 //var domCompleteTime = chrome.extension.getBackgroundPage().domCompleteTime;
+console.log("backgroudから読み取り");
+console.log("backgroudからとったdomInteractiveTime = "+domInteractiveTime);
 
 // ベタ文で描画
 var result = document.getElementById("push");
@@ -26,13 +28,26 @@ function write () {
 
 //動いてくれない visualizationAPI描画を始める
 var graph = document.getElementById("push2");
-google.load("visualization", "1", {packages:["corechart"]});
+// google.load("visualization", "1", {packages:["corechart"],callback:function(){
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
-graph.addEventListener("click",
-  google.setOnLoadCallback(function(){
-      var data = new google.visualization.DataTable();
+  // graph.addEventListener("click", drawChart, false);
+  function drawChart(){
+    var data = new google.visualization.DataTable();
       data.addColumn("string", "type");
       data.addColumn("number", "time");
+      /* 型を確かめる
+      var type = typeof(dnsTime);
+      console.log(type);
+      */
+      var row_data = [
+        [ "DNS", dnsTime],
+        [ "TCP", tcpTime],
+        [ "Request", requestTime],
+        [ "Response", responseTime],
+        [ "DOM Interactive", domInteractiveTime]
+      ];
       data.addRows([
         [ "DNS", dnsTime],
         [ "TCP", tcpTime],
@@ -40,10 +55,10 @@ graph.addEventListener("click",
         [ "Response", responseTime],
         [ "DOM Interactive", domInteractiveTime]
       ]);
+
       var chart = new google.visualization.PieChart(document.getElementById("graph"));
-      chart.draw(data, {
-        width: 500,
-        height: 300,
-        title: "Navigation Timing Result"
-      });
-   }), false)
+      chart.draw(data);
+      console.log(data);
+    }
+// }});
+// google.setOnLoadCallback(drawChart);

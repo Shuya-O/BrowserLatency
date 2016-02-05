@@ -12,7 +12,7 @@ var responseTime = pt.responseEnd - pt.responseStart; // レスポンス時間
 var domInteractiveTime = pt.domInteractive - pt.domLoading;  // DOM操作可能までの時間
 var domCompleteTime = pt.domComplete - pt.domLoading; // DOM構築完了までの時間
 
-// window.onload だと動かない
+// window.onload だと動かない Eventlistenerを使う
 if (window.addEventListener) window.addEventListener('load',function() {
   sendlatency();
 }, false);

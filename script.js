@@ -26,7 +26,7 @@ function sendlatency () {
     requestTime: requestTime,
     responseTime: responseTime,
     domInteractiveTime: domInteractiveTime,
-    domCompleteTime: domCompleteTime,
+    domCompleteTime: domCompleteTime
   },     function(response){
           console.debug(response.message);
       }

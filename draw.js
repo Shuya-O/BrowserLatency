@@ -5,7 +5,7 @@ var tcpTime = chrome.extension.getBackgroundPage().tcpTime;
 var requestTime = chrome.extension.getBackgroundPage().requestTime;
 var responseTime = chrome.extension.getBackgroundPage().responseTime;
 var domInteractiveTime = chrome.extension.getBackgroundPage().domInteractiveTime;
-//var domCompleteTime = chrome.extension.getBackgroundPage().domCompleteTime;
+var domCompleteTime = chrome.extension.getBackgroundPage().domCompleteTime;
 console.log("backgroudから読み取り");
 console.log("backgroudからとったdomInteractiveTime = "+domInteractiveTime);
 
